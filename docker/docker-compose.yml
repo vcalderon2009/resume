@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  resume:
+    # Building the local image
+    build:
+      context: ../
+      dockerfile: ./docker/resume.Dockerfile
+    # -- Running local image
+    image: "resume-latex"
+    container_name: "Resume-Latex"
+    entrypoint: pdflatex
+    volumes:
+      - ../resume:/data

@@ -6,6 +6,16 @@ PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 PROJECT_NAME := $(shell basename $(subst -,_,$(PROJECT_DIR)))
 RESUME_DIR = $(PROJECT_DIR)/resume
 
+ENVIRONMENT_NAME = $(PROJECT_NAME)
+PYTHON_INTERPRETER = python3
+PIP_INTERPRETER = pip3
+PYTHON_VERSION = 3.7.9
+PIP_VERSION = 22.3.1
+
+REQUIREMENTS_FILE = $(PROJECT_DIR)/requirements.txt
+REQUIREMENTS_FILE_TEMP = $(PROJECT_DIR)/requirements.tmp
+SED_BACKUP_EXTENSION = .original
+
 PERSON_NAME=Victor_F_Calderon
 
 ###############################################################################
@@ -20,6 +30,18 @@ show-params:
 	@ echo "RESUME_DIR:                  $(RESUME_DIR)"
 	@ echo "DOCKER_DIRECTORY:            $(DOCKER_DIRECTORY)"
 	@ echo "PERSON_NAME:                 $(PERSON_NAME)"
+	@ printf "\n-------- ENVIRONMENT ---------------\n"
+	@ echo "ENVIRONMENT_NAME:            $(ENVIRONMENT_NAME)"
+	@ echo "PYTHON_INTERPRETER:          $(PYTHON_INTERPRETER)"
+	@ echo "PYTHON_VERSION:              $(PYTHON_VERSION)"
+	@ echo "PIP_VERSION:                 $(PIP_VERSION)"
+	@ echo "REQUIREMENTS_FILE:           $(REQUIREMENTS_FILE)"
+	@ echo "REQUIREMENTS_FILE_TEMP:      $(REQUIREMENTS_FILE_TEMP)"
+	@ echo "SED_BACKUP_EXTENSION:        $(SED_BACKUP_EXTENSION)"
+	@ printf "\n-------- PYTHON ---------------\n"
+	@ echo "HAS_CONDA:                   $(HAS_CONDA)"
+	@ echo "HAS_PYENV:                   $(HAS_PYENV)"
+
 
 ###############################################################################
 # MISCELLANEOUS COMMANDS                                                      #
@@ -58,7 +80,151 @@ clean-latex:
 	find . -name '*.log' -exec rm -f {} +
 	find . -name '*.out' -exec rm -f {} +
 
+###############################################################################
+# Environment-related                                                         #
+###############################################################################
 
+# ----------------------------- Python-specific -------------------------------
+# - Checking what type of python one is using
+# Anaconda
+ifeq (,$(shell which conda))
+HAS_CONDA=False
+else
+HAS_CONDA=True
+# We need to specify the following commands in order to properly activate the
+# Anaconda environment.
+SHELL=/bin/bash
+# Note that the extra activate is needed to ensure that the activate floats env to the front of PATH
+CONDA_ACTIVATE=source $$(conda info --base)/etc/profile.d/conda.sh ; conda activate ; conda activate
+CONDA_DEACTIVATE=source $$(conda info --base)/etc/profile.d/conda.sh ; conda deactivate ; conda deactivate
+endif
+
+# - Pyenv
+ifeq (,$(shell which pyenv))
+HAS_PYENV=False
+else
+HAS_PYENV=True
+endif
+
+## Initialize the repository for code development
+init: clean create-envrc delete-environment create-environment
+ifeq (True,$(HAS_PYENV))
+	@ direnv allow || echo ""
+	@ $(MAKE) requirements
+	@ $(MAKE) show-params
+	@ printf "\n\n>>> Project initialized!\n"
+	@ $(MAKE) pre-commit-install
+	@ $(MAKE) lint
+	@ ($(MAKE) git-flow-install) || echo "Could not setup Git-flow"
+else ifeq (True,$(HAS_CONDA))
+	@ ($(CONDA_ACTIVATE) $(ENVIRONMENT_NAME) ; $(MAKE) requirements)
+	@ printf "\n\n>>> New Conda environment created. Activate with: \n\t: conda activate $(ENVIRONMENT_NAME)"
+	@ $(MAKE) show-params
+	@ printf "\n\n>>> Project initialized!"
+	@ ($(CONDA_ACTIVATE) $(ENVIRONMENT_NAME) ; $(MAKE) pre-commit-install )
+	@ ($(CONDA_ACTIVATE) $(ENVIRONMENT_NAME) ; $(MAKE) lint )
+	@ ($(CONDA_ACTIVATE) $(ENVIRONMENT_NAME) ; $(MAKE) git-flow-install) || echo "Could not setup Git-flow"
+endif
+
+## Remove ALL of the artifacts + Python environments
+destroy: clean docker-clean-all pre-commit-uninstall delete-environment
+	@ echo ">>> Deleted all artifacts and environments!"
+
+# ---------------------- Functions for Python environment ---------------------
+
+## Set up the envrc file for the project.
+create-envrc:
+	@ echo "cat $(PROJECT_DIR)/template.envrc > $(PROJECT_DIR)/.envrc"
+	@ cat $(PROJECT_DIR)/template.envrc > $(PROJECT_DIR)/.envrc
+
+## Delete the local envrc file of the project
+delete-envrc:
+	@ rm -rf $(PROJECT_DIR)/.envrc || echo ""
+
+
+## Install git-flow
+git-flow-install:
+	@	(( if [[ ! -f "`which git-flow`" ]]; then \
+		echo "No Git-flow installed"! ; \
+			if [[ -f "`which brew`"  ]]; then \
+			echo "Homebrew installed"; \
+			HOMEBREW_NO_AUTO_UPDATE=1 brew install git-flow; \
+			elif [[ -f "`which apt-get`"  ]]; then \
+			echo "Apt-get installed"; \
+			apt-get install git-flow; \
+			else \
+			echo "Could not locate package manager! (brew or apt-get)"; \
+			fi; \
+		fi ) && git flow init -f -d) || echo "Git-Flow setup could not be completed"
+
+## Creates the Python environment
+create-environment:
+ifeq (True,$(HAS_CONDA))
+	@ echo ">>> Detected CONDA ... Creating new conda environment!"
+	@ echo ">>> \tCreating environment: \t $(ENVIRONMENT_NAME)"
+	@ conda create --name $(ENVIRONMENT_NAME) python=$(PYTHON_VERSION) -y  || echo ""
+	@ echo ">>> New conda environment created. Activate with: \n conda activate $(ENVIRONMENT_NAME)"
+else ifeq (True,$(HAS_PYENV))
+	@ echo ">>> Detected PYENV ... Creating new Pyenv environment!"
+	@ echo ">>> \tCreating environment: \t $(ENVIRONMENT_NAME)"
+	@ pyenv virtualenv $(PYTHON_VERSION) $(ENVIRONMENT_NAME) || echo ""
+	@ pyenv local $(ENVIRONMENT_NAME)
+	@ echo ">>> New Pyenv environment created: '$(ENVIRONMENT_NAME)'"
+	@ pyenv virtualenvs
+	@ echo
+else
+	$(PYTHON_INTERPRETER) -m $(PIP_INTERPRETER) install -q virtualenv virtualenvwrapper
+	@ echo ">>> Installing virtualenvwrapper if not already installed.\nMake sure the following lines are in shell startup file\n\
+	export WORKON_HOME=$$HOME/.virtualenvs\nexport PROJECT_HOME=$$HOME/Devel\nsource /usr/local/bin/virtualenvwrapper.sh\n"
+	@ bash -c "source `which virtualenvwrapper.sh`;mkvirtualenv $(ENVIRONMENT_NAME) --python=$(PYTHON_VERSION)"
+	@ echo ">>> New virtualenv created. Activate with:\nworkon $(ENVIRONMENT_NAME)"
+endif
+
+## Deletes the Python environment
+delete-environment:
+ifeq (True,$(HAS_CONDA))
+	@ echo ">>> Detected CONDA ... Deleting Conda environment, if applicable!"
+	@ echo ">>> Deleting environment:    '$(ENVIRONMENT_NAME)'"
+	@ ($(CONDA_DEACTIVATE) ; conda env remove --name $(ENVIRONMENT_NAME) -y) || echo ""
+	@ echo ">>> Conda environment deleted: '$(ENVIRONMENT_NAME)'"
+else ifeq (True,$(HAS_PYENV))
+	@ echo ">>> Detected PYENV ... Deleting Pyenv environment!"
+	@ echo ">>> Deleting environment:    '$(ENVIRONMENT_NAME)'"
+	@ pyenv uninstall -f $(ENVIRONMENT_NAME) || echo ""
+	@ rm $(PROJECT_DIR)/.python-version || echo ""
+	@ echo ">>> Pyenv environment deleted: '$(ENVIRONMENT_NAME)'"
+	@ pyenv virtualenvs
+	@ echo
+endif
+
+## Upgrade the version of the 'pip' package
+pip-upgrade:
+	@ $(PYTHON_INTERPRETER) -m pip install --no-cache-dir -q --upgrade pip==$(PIP_VERSION)
+
+## Sort the project packages requirements file
+sort-requirements:
+	@ sort $(REQUIREMENTS_FILE) | grep "\S" > $(REQUIREMENTS_FILE_TEMP) && \
+	mv $(REQUIREMENTS_FILE_TEMP) $(REQUIREMENTS_FILE)
+
+## Install Python dependencies into the Python environment
+requirements: pip-upgrade sort-requirements
+	@ $(PYTHON_INTERPRETER) -m pip install --no-cache-dir -q -r $(REQUIREMENTS_FILE)
+
+###############################################################################
+# Code Linting                                                                #
+###############################################################################
+
+## Installing the pre-commit Git hook
+pre-commit-install:
+	@ pre-commit install
+
+## Uninstall the pre-commit Git hook
+pre-commit-uninstall:
+	@ pre-commit uninstall
+
+## Run the 'pre-commit' linting step manually
+lint:
+	@ pre-commit run -a --hook-stage manual
 
 ###############################################################################
 # Docker Commands                                                             #

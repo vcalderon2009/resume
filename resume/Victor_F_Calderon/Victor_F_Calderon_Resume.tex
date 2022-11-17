@@ -25,11 +25,14 @@
 
 \usepackage{pifont}
 
+
+
+
 \hypersetup{
     colorlinks=true,
 %     citecolor=blue,
     % linkcolor=blue,
-%     filecolor=magenta,      
+%     filecolor=magenta,
     urlcolor=red,
 }
 
@@ -54,7 +57,12 @@
 
 % Sections formatting
 \titleformat{\section}{
-  \vspace{-4pt}\scshape\raggedright\large
+  \vspace{-4pt}
+  \scshape
+  \raggedright
+  % \large
+  \SizeSections
+  \bfseries
 }{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
 
 % Ensure that generate pdf is machine readable/ATS parsable
@@ -94,13 +102,17 @@
 
 \renewcommand{\labelitemii}{$\circ$}
 
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*]\itemsep\itemseparation }
+\newcommand{\resumeSubHeadingListStart}{
+  \begin{itemize}[leftmargin=*]
+    \itemsep
+    \itemseparation
+}
 \newcommand{\resumeSubHeadingListStartDash}{
   \begin{itemize}[
     labelwidth={1em},
     font=\bfseries,
     align=left,
-    leftmargin=*, 
+    leftmargin=*,
     label={--}
   ]\itemsep\itemseparation }
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
@@ -134,22 +146,33 @@
 
 
 % ---------------------------- SHORTCUTS --------------------------------------
+
+% --- Name of the person
 \newcommand{\myname}{Victor Calderon}
 
+% --- Miscellaneous
 \newcommand{\MNRAS}{Monthly Notices of the Royal Astronomical Society}
 \newcommand{\XGBoost}{\texttt{XGBoost}}
 \newcommand{\XGBoosts}{\texttt{XGBoost} }
-\newcommand{\aberlind}{\href{https://as.vanderbilt.edu/physics/bio/andreas-berlind}{Andreas Berlind}}
+\newcommand{\aberlind}{\href{https://www.linkedin.com/in/aberlind/}{Andreas Berlind}}
+
+% --- Contact
 \newcommand{\linkedinwebsite}{https://www.linkedin.com/in/vcalderon}
 \newcommand{\linkedinshort}{linkedin.com/in/vcalderon}
 \newcommand{\githubusername}{vcalderon2009}
 \newcommand{\githuburl}{https://www.github.com/vcalderon2009}
 \newcommand{\mywebsite}{http://vcalderon.me}
 \newcommand{\itemseparation}{0em}
+
+% -- Related to the Skill-section
 \newcommand{\skillColumnWidthOne}{0.22}
 \newcommand{\skillColumnWidthTwo}{0.01}
 \newcommand{\skillColumnWidthThree}{0.75}
 \newcommand{\skillPadding}{0pt}
+
+% -- Size of sections, titles, etc.
+\newcommand{\SizeTitleName}{\Huge}
+\newcommand{\SizeSections}{\LARGE}
 
 %------------------------------------------------------------------------------
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CV STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -160,51 +183,14 @@
 % ------------------------------------HEADING----------------------------------
 \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
   % -- Name and email address
-  \textbf{\href{\mywebsite}{\Huge \myname}} &
+  \textbf{\href{\mywebsite}{\SizeTitleName \myname}} &
   % -- Github
   \faGithub: \href{\githuburl}{\@\githuburl} \\
   % -- Personal website
-  {\large\href{\mywebsite}{\mywebsite}} & 
+  {\large\href{\mywebsite}{\mywebsite}} &
   % -- LinkedIn
   \faLinkedin: \href{\linkedinwebsite}{\linkedinshort}\\
 \end{tabular*}
-
-
-% ------------------------------EXPERIENCE-------------------------------------
-
-% --- EXAMPLE
-% \resumeSubheading
-% {COMPANY}{LOCATION, STATE}
-% {JOB TITLE}{STARTMONTH STARTYEAR - Present}
-% \resumeItemListStart
-%   \resumeItem{ITEM 1}
-%     {Description}
-% \resumeItemListEnd
-
-\section{Work Experience}
-  \resumeSubHeadingListStart
-
-    \resumeSubheading
-      {COMPANY}{LOCATION, STATE}
-      {JOB TITLE}{STARTMONTH STARTYEAR - Present}
-      \resumeItemListStart
-        \resumeItem{ITEM 1}
-          {Description}
-      \resumeItemListEnd
-      
-% --------Multiple Positions Heading------------
-%    \resumeSubSubheading
-%     {Software Engineer I}{Oct 2014 - Sep 2016}
-%     \resumeItemListStart
-%        \resumeItem{Apache Beam}
-        %  {Apache Beam is a unified model for defining both batch and 
-        %  streaming data-parallel processing pipelines}
-%     \resumeItemListEnd
-%    \resumeSubHeadingListEnd
-%-------------------------------------------
-
-  \resumeSubHeadingListEnd
-
 
 %--------------------------------PROJECTS--------------------------------------
 % \section{Projects}
@@ -219,9 +205,10 @@
 %       {Book that gives step by step instructions on setting up developer environment on Mac OS.}
 %   \resumeSubHeadingListEnd
 
-% ---------------------------PROGRAMMING SKILLS--------------------------------
+% --------------------------- TECHNICAL SKILLS---------------------------------
 
 \section{Technical Skills}
+  \label{sec:technical-skills}
   % \startSkills
   %   \skillItem{This is a test}{Another item}
   % \finishSkill
@@ -268,11 +255,48 @@
   % --- End of skills
   \finishSkill
 
+% ------------------------------EXPERIENCE-------------------------------------
+
+% --- EXAMPLE
+% \resumeSubheading
+% {COMPANY}{LOCATION, STATE}
+% {JOB TITLE}{STARTMONTH STARTYEAR - Present}
+% \resumeItemListStart
+%   \resumeItem{ITEM 1}
+%     {Description}
+% \resumeItemListEnd
+
+\section{Work Experience}
+  \label{sec:work-experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Vanderbilt University}{Nashville, TN (USA)}
+      {PhD candidate in computational Astrophysics}{JUN 2017 - AUG 2019}
+      \resumeItemListStart
+        \resumeItem{ITEM 1}
+          {Description}
+      \resumeItemListEnd
+
+% --------Multiple Positions Heading------------
+%    \resumeSubSubheading
+%     {Software Engineer I}{Oct 2014 - Sep 2016}
+%     \resumeItemListStart
+%        \resumeItem{Apache Beam}
+        %  {Apache Beam is a unified model for defining both batch and
+        %  streaming data-parallel processing pipelines}
+%     \resumeItemListEnd
+%    \resumeSubHeadingListEnd
+%-------------------------------------------
+
+  \resumeSubHeadingListEnd
+
 % ----------------------------------EDUCATION----------------------------------
 
 \section{Education}
+  \label{sec:education}
   \resumeSubHeadingListStart
-  % ---- Grad School 
+  % ---- Grad School
     \resumeSubheading
     {Vanderbilt University}{Nashville, TN (USA)}
     {Ph.D. in Physics with focus in Astrophysics;

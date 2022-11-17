@@ -33,7 +33,9 @@
 %     citecolor=blue,
     % linkcolor=blue,
 %     filecolor=magenta,
-    urlcolor=red,
+    % urlcolor=red,
+    % urlcolor=blue,
+    urlcolor=RoyalBlue,
 }
 
 \pagestyle{fancy}
@@ -89,7 +91,7 @@
   \vspace{-1pt}\item
     \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
       \textbf{#1} & #2 \\
-      {\textbf{\small#3}} & \textit{\small #4} \\
+      {\small#3} & \textit{\small #4} \\
       % \textit{\small#3} & \textit{\small #4} \\
     \end{tabular*}\vspace{-5pt}
 }
@@ -152,6 +154,9 @@
 % --- Name of the person
 \newcommand{\myname}{Victor Calderon}
 
+% --- Hyperlink-related
+\newcommand{\hyperlinkColor}{NavyBlue}
+
 % --- Miscellaneous
 \newcommand{\MNRAS}{Monthly Notices of the Royal Astronomical Society}
 \newcommand{\XGBoost}{\texttt{XGBoost}}
@@ -185,6 +190,15 @@
   }
 }
 
+\newcommand{\workResumeSubheading}[3]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      {\textbf{#1}} - {\textbf{\textit{#2}}} & \textbf{#3} \\
+      % {\textbf{\small#3}} & \textit{\small #4} \\
+      % \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
 %------------------------------------------------------------------------------
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CV STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -194,7 +208,8 @@
 % ------------------------------------HEADING----------------------------------
 \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
   % -- Name and email address
-  \textbf{\href{\mywebsite}{\SizeTitleName \myname}} &
+  \textbf{{\SizeTitleName \myname}} &
+  % \textbf{\href{\mywebsite}{\SizeTitleName \myname}} &
   % -- Github
   \faGithub: \href{\githuburl}{\@\githuburl} \\
   % -- Personal website
@@ -229,7 +244,8 @@
     % --- Programming skills
     \skillItem{Programming}{
       Python (pandas, sklearn, scraping, visualization),
-      C, Cython,
+      C,
+      Cython,
       Bash,
       SQL,
       \texttt{git}
@@ -282,11 +298,46 @@
   \resumeSubHeadingListStart
 
   % -------------- 5X5
+  \workResumeSubheading
+    {5x5 Technologies, Inc.}
+    {Senior Machine Learning Engineer}
+    {Jan 2020 - Present}
+      % --- Description fo the work
+      \resumeItemListStart
+      %
+      \workExperienceBullet{
+        Trained, validated, and deployed image segmentation deep learning
+        models for automatic detection of enclosures and occupied spaces for
+        areas around towers with 90\% accuracy and a 50\% time savings over
+        manual identification.
+      }
+      %
+      \workExperienceBullet{
+        Developed and maintained a suite of automatic equipment identification
+        models using supervised deep learning and 6D point clouds of towers
+        and mounted equipment. Reduced the packaging time by 20\% over manual
+        packaging.
+      }
+      %
+      \workExperienceBullet{
+        Implemented MLOps pipelines for various models, including automatic
+        model training, validation, versioning, API access, and CICD deployment.
+      }
+      %
+      \workExperienceBullet{
+        Architechted and implemented ETL pipelines for data generation and
+        ingestion used by ML projects.
+      }
+      %
+      \workExperienceBullet{
+        Managed and mentored 3 intern students.
+      }
+      %
+      \resumeItemListEnd
   % -------------- HCA Healthcare
-    \resumeSubheading
+  \workResumeSubheading
       {HCA Healthcare}
-      {Nashville, TN (USA)}
-      {Data Scientist - Data Science Department - Clinical Operations Group (COG)}
+      {Data Scientist}
       {Sep 2019 - Jan 2021}
       % --- Description fo the work
       \resumeItemListStart
@@ -295,12 +346,14 @@
           Developed internal tooling and packages to streamline various projects
           within the Data Science team.
         }
+        %
         \workExperienceBullet{
           Trained and validated various tree-based models to predict the
           hourly- and daily ER census at any given time and at any of the
-          200 hospitals in the HCA network. I was also responsible for the
+          200 hospitals in the HCA network. Also responsible for the
           training, validation, deployment, and monitoring of the models.
         }
+        %
         \workExperienceBullet{
           Led the initial planning and development of a risk prediction
           algorithm for early detection of Sepsis and organ failure using
@@ -309,9 +362,8 @@
       %
       \resumeItemListEnd
   % -------------- VANDERBILT
-    \resumeSubheading
+  \workResumeSubheading
       {Vanderbilt University}
-      {Nashville, TN (USA)}
       {PhD candidate in computational Astrophysics}
       {Jun 2017 - Aug 2019}
       % --- Description fo the work
@@ -321,15 +373,18 @@
           Trained tree-based models on large synthetic galaxy catalogues
           to infer masses of galaxy systems.
         }
+        %
         \workExperienceBullet{
           Improved current mass estimates of galaxy systems by up to factors
           of 10x improvement over traditional methods by applying machine
           learning techniques to the analysis of galaxy systems.
         }
+        %
         \workExperienceBullet{
           Developed tools and community packages for analyzing various types
           of galaxy datasets.
         }
+        %
         \workExperienceBullet{
           Ran N-body simulations of the Universe to study the formation and
           clustering of galaxies, and made statistical inferences about how

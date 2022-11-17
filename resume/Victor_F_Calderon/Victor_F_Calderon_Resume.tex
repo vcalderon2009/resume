@@ -110,6 +110,14 @@
 }
 
 
+% -- Modified item list
+\newcommand{\skillItem}[2]{
+  \item{
+    \textbf{#1}{: #2}
+  }
+}
+
+
 % ---------------------------- SHORTCUTS --------------------------------------
 \newcommand{\myname}{Victor Calderon}
 
@@ -170,7 +178,8 @@
 %     {Software Engineer I}{Oct 2014 - Sep 2016}
 %     \resumeItemListStart
 %        \resumeItem{Apache Beam}
-%          {Apache Beam is a unified model for defining both batch and streaming data-parallel processing pipelines}
+        %  {Apache Beam is a unified model for defining both batch and 
+        %  streaming data-parallel processing pipelines}
 %     \resumeItemListEnd
 %    \resumeSubHeadingListEnd
 %-------------------------------------------
@@ -178,7 +187,7 @@
   \resumeSubHeadingListEnd
 
 
-% %-----------PROJECTS-----------------
+%--------------------------------PROJECTS--------------------------------------
 % \section{Projects}
 %   \resumeSubHeadingListStart
 %     \resumeSubItem{QuantSoftware Toolkit}
@@ -195,17 +204,17 @@
 
 \section{Technical Skills}
  \resumeSubHeadingListStartDash
-  \item{
-    \textbf{Languages}{: }
-  }
-  \item{
-    \textbf{Languages}{: }
-  }
-   \item{
-     \textbf{Languages}{: Scala, Python, Javascript, C++, SQL, Java}
-     \hfill
-     \textbf{Technologies}{: AWS, Play, React, Kafka, GCE}
-   }
+  % --- Programming skills
+  \skillItem{Programming}{Python (pandas, sklearn, web scraping)}
+  % --- Data Science and machine learning
+  \skillItem{Machine Learning}{}
+  % --- Deep Learning
+  \skillItem{Deep Learning}{}
+  % --- Technologies
+  \skillItem{Technologies}{}
+  % --- Technical Writing
+  \skillItem{Technical Writing}{}
+  % --- End of skills
  \resumeSubHeadingListEnd
 
 % ----------------------------------EDUCATION----------------------------------
@@ -213,17 +222,17 @@
 \section{Education}
   \resumeSubHeadingListStart
   % ---- Grad School 
-    \resumeSubheadingsix
-    {Vanderbilt University}{Nashville, TN}
+    \resumeSubheading
+    {Vanderbilt University}{Nashville, TN (USA)}
     {Ph.D. in Physics with focus in Astrophysics;
-    Adviser: \aberlind}{Aug. 2013 -- Aug. 2019}
-    {Understanding the Galaxy-Halo connection through galaxy group catalogues}
-    {\href{https://www.overleaf.com/read/ngzgrthrnrcj}{\faLink}}
+    Adviser: \aberlind}{Aug 2019}
+    % {Understanding the Galaxy-Halo connection through galaxy group catalogues}
+    % {\href{https://www.overleaf.com/read/ngzgrthrnrcj}{\faLink}}
   % ----- College
     \resumeSubheading
-      {Florida Institute of Technology}{Melbourne, FL, USA}
+      {Florida Institute of Technology}{Melbourne, FL (USA)}
       {B.Sc. degrees in Astrophysics, Physics and Mathematics;
-      Magna Cum Laude}{Aug. 2009 -- May 2013}
+      Magna Cum Laude}{May 2013}
   \resumeSubHeadingListEnd
 %
 

@@ -21,6 +21,8 @@
 \usepackage[svgnames]{xcolor}
 \input{glyphtounicode}
 
+\usepackage{array}
+
 \usepackage{pifont}
 
 \hypersetup{
@@ -93,7 +95,14 @@
 \renewcommand{\labelitemii}{$\circ$}
 
 \newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*]\itemsep\itemseparation }
-\newcommand{\resumeSubHeadingListStartDash}{\begin{itemize}[leftmargin=*, label={--}]\itemsep\itemseparation }
+\newcommand{\resumeSubHeadingListStartDash}{
+  \begin{itemize}[
+    labelwidth={1em},
+    font=\bfseries,
+    align=left,
+    leftmargin=*, 
+    label={--}
+  ]\itemsep\itemseparation }
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
 \newcommand{\resumeItemListStart}{\begin{itemize}}
 \newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
@@ -110,11 +119,17 @@
 }
 
 
-% -- Modified item list
-\newcommand{\skillItem}[2]{
-  \item{
-    \textbf{#1}{: #2}
+% --- Modified list for skills
+\newcommand{\startSkills}{\begin{tabular}
+  {
+  p{\skillColumnWidthOne\textwidth}
+  p{\skillColumnWidthTwo\textwidth}
+  p{\skillColumnWidthThree\textwidth}
   }
+}
+\newcommand{\finishSkill}{\end{tabular}}
+\newcommand{\skillItem}[2]{
+  {- \textbf{#1}} & : & {#2}\\ [\skillPadding]
 }
 
 
@@ -131,6 +146,10 @@
 \newcommand{\githuburl}{https://www.github.com/vcalderon2009}
 \newcommand{\mywebsite}{http://vcalderon.me}
 \newcommand{\itemseparation}{0em}
+\newcommand{\skillColumnWidthOne}{0.22}
+\newcommand{\skillColumnWidthTwo}{0.01}
+\newcommand{\skillColumnWidthThree}{0.75}
+\newcommand{\skillPadding}{0pt}
 
 %------------------------------------------------------------------------------
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CV STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -203,19 +222,51 @@
 % ---------------------------PROGRAMMING SKILLS--------------------------------
 
 \section{Technical Skills}
- \resumeSubHeadingListStartDash
-  % --- Programming skills
-  \skillItem{Programming}{Python (pandas, sklearn, web scraping)}
-  % --- Data Science and machine learning
-  \skillItem{Machine Learning}{}
-  % --- Deep Learning
-  \skillItem{Deep Learning}{}
-  % --- Technologies
-  \skillItem{Technologies}{}
-  % --- Technical Writing
-  \skillItem{Technical Writing}{}
+  % \startSkills
+  %   \skillItem{This is a test}{Another item}
+  % \finishSkill
+
+
+  \startSkills
+    % --- Programming skills
+    \skillItem{Programming}{
+      Python (pandas, sklearn, scraping, visualization),
+      C, Cython,
+      Bash,
+      SQL,
+      \texttt{git}
+    }
+    % --- Data Science and machine learning
+    \skillItem{Machine Learning}{
+      Regressions,
+      Decision Trees, Random Forests,
+      Clustering,
+      Hypothesis testing,
+      model deployment strategies,
+      data visualization
+    }
+    % --- Deep Learning
+    \skillItem{Deep Learning}{
+      PyTorch, TensorFlow, Keras,
+      Computer Vision for 2D and 3D data (classification, segmetation,
+      object detection and identification),
+      Neural Networks (CNNs)
+    }
+    % --- Technologies
+    \skillItem{Technologies}{
+      Amazon Web Services (AWS), AWS SageMaker, Docker, Kubernetes,
+      \texttt{serverless},
+      Flask, FastAPI,
+      Kafka,
+      CICD (Gitlab CICD, TravisCI),
+      MLFLow
+    }
+    % --- Technical Writing
+    \skillItem{Technical Writing}{
+      HTML/CSS, Markdown, reStructuredText, \LaTeX
+    }
   % --- End of skills
- \resumeSubHeadingListEnd
+  \finishSkill
 
 % ----------------------------------EDUCATION----------------------------------
 
@@ -234,9 +285,6 @@
       {B.Sc. degrees in Astrophysics, Physics and Mathematics;
       Magna Cum Laude}{May 2013}
   \resumeSubHeadingListEnd
-%
-
-
 
 % -----------------------------------------------------------------------------
 \end{document}

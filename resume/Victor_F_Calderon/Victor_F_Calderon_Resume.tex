@@ -71,7 +71,8 @@
 %-------------------------
 % Custom commands
 \newcommand{\resumeItem}[2]{
-  \item\small{
+  \item
+    \small{
     \textbf{#1}{: #2 \vspace{-2pt}}
   }
 }
@@ -88,7 +89,8 @@
   \vspace{-1pt}\item
     \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
       \textbf{#1} & #2 \\
-      \textit{\small#3} & \textit{\small #4} \\
+      {\textbf{\small#3}} & \textit{\small #4} \\
+      % \textit{\small#3} & \textit{\small #4} \\
     \end{tabular*}\vspace{-5pt}
 }
 
@@ -173,6 +175,15 @@
 % -- Size of sections, titles, etc.
 \newcommand{\SizeTitleName}{\Huge}
 \newcommand{\SizeSections}{\LARGE}
+
+% -- Work Experience bullet points
+\newcommand{\workExperienceBulletSpacing}{-3pt}
+
+\newcommand{\workExperienceBullet}[1]{
+  \item{
+    {#1 \vspace{\workExperienceBulletSpacing}}
+  }
+}
 
 %------------------------------------------------------------------------------
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CV STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -272,10 +283,27 @@
 
     \resumeSubheading
       {Vanderbilt University}{Nashville, TN (USA)}
-      {PhD candidate in computational Astrophysics}{JUN 2017 - AUG 2019}
+      {PhD candidate in computational Astrophysics}{Jun 2017 - Aug 2019}
       \resumeItemListStart
-        \resumeItem{ITEM 1}
-          {Description}
+      % -- Machine learning
+        \workExperienceBullet{
+          Trained tree-based models on large synthetic galaxy catalogues
+          to infer masses of galaxy systems.
+        }
+        \workExperienceBullet{
+          Improved current mass estimates of galaxy systems by up to factors
+          of 10x improvement over traditional methods by applying machine
+          learning techniques to the analysis of galaxy systems.
+        }
+        \workExperienceBullet{
+          Developed tools and community packages for analyzing various types
+          of galaxy datasets.
+        }
+        \workExperienceBullet{
+          Ran N-body simulations of the Universe to study the formation and
+          clustering of galaxies, and made statistical inferences about how
+          galaxies form and evolve over time in simulations.
+        }
       \resumeItemListEnd
 
 % --------Multiple Positions Heading------------

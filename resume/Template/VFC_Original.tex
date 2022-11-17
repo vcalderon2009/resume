@@ -1,0 +1,400 @@
+%-------------------------
+% Resume in Latex
+% Author : Sourabh Bajaj
+% Website: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[pdftex]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{fontawesome}
+
+\usepackage{hyperref}
+\usepackage[all]{hypcap}
+\hypersetup{
+    colorlinks=true,
+%     citecolor=blue,
+    % linkcolor=blue,
+%     filecolor=magenta,
+    urlcolor=red,
+}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.375in}
+\addtolength{\evensidemargin}{-0.375in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item\small{
+    \textbf{#1}{: #2 \vspace{-2pt}}
+  }
+}
+
+% Custom commands
+\newcommand{\resumeItemThree}[3]{
+  \item\small{
+    \textbf{#1}\ {#2}{: #3 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubheadingsix}[6]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+      \ \ \ \ \small{Title: \textit{#5} #6} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubheadingnew}[2]{
+  \vspace{-2pt}\item{#1}\hfill{#2}\\[0pt]
+  }
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\newcommand{\resumeSubItemThree}[3]{\resumeItemThree{#1}{#2}{#3}\vspace{-4pt}}
+
+\renewcommand{\labelitemii}{$\circ$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+\newcommand{\MNRAS}{Monthly Notices of the Royal Astronomical Society}
+\newcommand{\XGBoost}{\texttt{XGBoost}}
+\newcommand{\XGBoosts}{\texttt{XGBoost} }
+\newcommand{\aberlind}{\href{https://as.vanderbilt.edu/physics/bio/andreas-berlind}{Andreas Berlind}}
+%-------------------------------------------
+%%%%%%  CV STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+%----------HEADING-----------------
+\begin{center}
+    {\LARGE \textbf{Victor Calderon}}\\
+    % \textit{Problem Solver\ $\bullet$\ Model Builder\ $\bullet$\ Rapid Learner\ $\bullet$\ Servant Leader}
+    \faLinkedin: \href{https://www.linkedin.com/in/vcalderon/}{\@vcalderon}\ $\bullet$\ \faGithub: \href{https://www.github.com/vcalderon2009}{\@vcalderon2009}\ $\bullet$\ \faHome: \href{http://vcalderon.me}{http://vcalderon.me}
+    % \textit{Problem Solver\ $\bullet$\ Model Builder\ $\bullet$\ Rapid Learner\ $\bullet$\ Servant Leader}
+\end{center}
+
+% \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}l}
+%     \faLinkedin: \href{https://www.linkedin.com/in/vcalderon/}{\@vcalderon}\\
+%     \faGithub: \href{https://www.github.com/vcalderon2009}{\@vcalderon2009}\\
+%     \faHome: \href{http://vcalderon.me}{http://vcalderon.me}\\
+%     % \faEnvelope: \href{mailto:vcalderon.arri@gmail.com}{vcalderon.arri@gmail.com}
+% \end{tabular*}
+
+% \hfill \break
+
+Detail-oriented astrophysicist-turned-data-scientist with 5+ years of experience
+in applying machine learning and deep learning techniques to problems in
+the astrophysical, healthcare, and telecommunications sectors. Highly organized, self-motivated,
+and proficient in producing robust code for high-volume companies.
+
+% \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}l}
+%     \textbf{Current Address} & \faLinkedin: \href{https://www.linkedin.com/in/vcalderon/}{\@vcalderon}\\
+%     555 Church Street & \faGithub: \href{https://www.github.com/vcalderon2009}{\@vcalderon2009}\\
+%     Apt 2007 &  \faHome: \href{http://vcalderon.me}{http://vcalderon.me}\\
+%     Nashville, TN 37219 &  \faEnvelope: \href{mailto:vcalderon.arri@gmail.com}{vcalderon.arri@gmail.com}
+% \end{tabular*}
+
+%-----------EXPERIENCE-----------------
+\section{Work Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+        {5x5 Technologies, Inc.}{Nashville, TN (Fully Remote)}
+        {Senior Machine Learning Engineer - AI Research and Development (R\&D)}{Jan 2021 -- Present}
+        \resumeItemListStart
+            \resumeItem{AI Research \& Development}
+            {I am working on the implementation of deep learning and machine learning techniques to
+            problems in 2D and 3D computer vision, while also developing new algorithms to help solve
+            problems in the telecommunication and asset inspection industry. I have developed
+            and applied deep learning techniques to object detection and identification problems,
+            while also maintaining parts of the machine learning experimentation platform
+            at 5x5 Technologies, Inc.}
+        \resumeItemListEnd
+
+    \resumeSubheading
+      {HCA Healthcare}{Nashville, TN}
+      {Data Scientist I - Data Science Department - Clinical Operations Group (COG)}{Sep 2019 -- Jan 2021}
+      \resumeItemListStart
+        \resumeItem{Machine Learning Development}
+          {Performed descriptive, exploratory and inferential statistical analysis as well
+          as supervised machine learning. Developed high quality, modular, reusable code
+          that can be easily used by other data scientists from the team. Use my background
+          and expertise in high-performance computing, statistical analysis, software
+          development, and machine learning to help the COG Data Science team create novel
+          ML models that help innovate the healthcare technology
+          }
+        \resumeItem{Data Science Project Delivery and Leadership}
+          {Actively collaborate with my team in code review sessions, and assist in
+          collaboration efforts between teams in the organization.
+          }
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Vanderbilt University}{Nashville, TN}
+      {Ph.D. candidate in computational Physics/Astrophysics}{Aug 2013 -- Aug 2019}
+      \resumeItemListStart
+        \resumeItem{Machine learning in galaxy catalogues}
+          {Applied machine learning techniques to determine the masses of
+          galaxy systems. My analysis improved on current mass estimates of
+          galaxy systems by up to factors of 10x improvement over more
+          traditional methods of determining masses of galaxy systems. I trained
+          Random Forest, \XGBoost, and a neural network on synthetic galaxy
+          catalogues to predict the masses of galaxy systems.
+          \href{https://arxiv.org/abs/1902.02680}{\faFileO}
+          }
+        \resumeItem{Galaxy Formation and Evolution}
+          {Ran N-body simulation of the Universe to study the formation and
+          clustering of galaxies. Constructed various algorithms to analyze
+          astronomical data, and made statistical inferences about how
+          galaxies form and evolve in simulations. I analyzed $>$200 GB of
+          astronomical data in order better understand how galaxies are
+          clustered at various scales on the sky. Constructed packages and tools
+          to handle the analyses of the various datasets.
+          \href{https://github.com/vcalderon2009/sdss_catl_utils}{\faGlobe}
+          \href{https://github.com/vcalderon2009/SDSS_Conformity_Analysis}{\faGithub}
+          }
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Massachusetts Institute of Technology}{Cambridge, MA}
+      {MSRP Summer Research Intern - Aerospace Engineering}{Jun 2012 -- Aug 2012}
+      \resumeItemListStart
+        \resumeItem{CubeSats}
+          {Design and fabrication of an electrospray system capable of
+          producing sub-micron glass droplets, ultimately enabling the
+          manufacturing of high-power nano-structured emitters on planar
+          surfaces. I developed mathematical models and algorithms to depict the
+          physical characteristics of borosilicate glass, such as viscosity,
+          volumetric flux, and thermal expansion.}
+      \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+
+%--------PROGRAMMING SKILLS------------
+\section{Programming Skills}
+ \resumeSubHeadingListStart
+   \item{
+        \textbf{Languages}{: PyTorch, TensorFlow, Keras; Python, C, Cython, Bash, SQL, high-performance computing,
+        multiprocessing, Unix/Linux}.}
+    \item{
+        \textbf{Data Science Skills}: Deep learning on 2D and 3D data, object detection and identification, parameter estimation,
+        hypothesis testing, machine learning (linear and logistic regression, random forests,
+        K-NN, clustering, neural networks, decision trees, and gradient boosting),
+        CI/CD, model deployment strategies, data visualization, and web scraping,
+    }
+    \item{
+     \textbf{Technologies}{: Amazon Web Services (AWS), AWS SageMaker, Docker, Kubernetes, Kubeflow, Docker,
+     \texttt{serverless}, Flask, Apache Kafka, Red Hat OpenShift, TravisCI, ReadTheDocs, Git.}
+   }
+   \item{
+     \textbf{Technical Writing}{: HTML/CSS, Markdown, reStructuredText, \LaTeX}
+    }
+ \resumeSubHeadingListEnd
+
+%-----------EDUCATION-----------------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheadingsix
+      {Vanderbilt University}{Nashville, TN}
+      {Ph.D. in Physics with focus in Astrophysics;
+      Adviser: \aberlind}{Aug. 2013 -- Aug. 2019}
+      {Understanding the Galaxy-Halo connection through galaxy group catalogues}
+      {\href{https://www.overleaf.com/read/ngzgrthrnrcj}{\faLink}}
+    \resumeSubheading
+      {Florida Institute of Technology}{Melbourne, FL, USA}
+      {B.Sc. degrees in Astrophysics, Physics and Mathematics;
+      Magna Cum Laude}{Aug. 2009 -- May 2013}
+    \resumeSubHeadingListEnd
+
+
+
+%-----------PROJECTS-----------------
+\section{Teaching and Projects}
+  \resumeSubHeadingListStart
+    \resumeSubItem{\href{https://sdss-catls-utils.readthedocs.io/en/latest/}{sdss-catls-utils} and \href{https://cosmo-utils.readthedocs.io/en/latest/}{cosmo-utils}}
+      {Open-source python library for analyzing cosmological datasets of
+      the large-scale structure and galaxies.}
+  \resumeSubHeadingListEnd
+  \resumeSubHeadingListStart
+    \resumeSubItemThree
+      {\href{https://vandyastroml.github.io/}{Workshops and Tutorials}}
+      {\href{https://vandyastroml.github.io/}{\faGlobe}}
+      {Designed and taught a set of computational workshops and tutorials
+      meant to introduce PhD students to data-science techniques and
+      good-coding practices.}
+  \resumeSubHeadingListEnd
+  \resumeSubHeadingListStart
+    \resumeSubItemThree
+      {\href{https://vcalderon2009.github.io/vc_tools.html}{Other tools and packages}}
+      {\href{https://vcalderon2009.github.io/vc_tools.html}{\faGlobe}}
+      {I have developed command-line packages that handle the file and folder structure of different
+      kinds of projects, e.g., dissertations, data-science-related projects, etc.}
+  \resumeSubHeadingListEnd
+
+%--------Honors and Awards------------
+\section{Honors and Awards}
+  \resumeSubHeadingListStart
+    \resumeSubheadingnew
+      {Author on 7 research papers and counting}{Ongoing}
+    \resumeSubheadingnew
+      {Offered an \href{https://www.insightdatascience.com/}{\textbf{Insight Data Science Fellowship}}  - \textit{declined}}{2019}
+    \resumeSubheadingnew
+      {Offered a \href{https://www.thedataincubator.com/}{\textbf{The Data Incubator Data Science Fellowship}} - \textit{declined}}{2019}
+    \resumeSubheadingnew
+      {2nd Best Poster Award with \$500 prize - \textit{Big Data Symposium} at Vanderbilt University}{2018}
+    \resumeSubheadingnew
+      {Summer Research Awards at \textit{Vanderbilt University}}{2013, 2014}
+    \resumeSubheadingnew
+      {Best Poster Presentation Award - \textit{NSF 2012 AGMUS Research Symposium} in Puerto Rico}{2012}
+    \resumeSubheadingnew
+      {Outstanding Senior in Astrophysics \& Astronomy Award at \textit{Florida Institute of Technology}}{2012}
+    \resumeSubheadingnew
+      {Distinguished Student Scholar Award at \textit{Florida Institute of Technology}}{2011}
+    \resumeSubheadingnew
+      {Elected to Phi Kappa Phi Honor Society at \textit{Florida Institute of Technology}}{2011}
+    \resumeSubheadingnew
+      {Elected to Phi Eta Sigma Honor Society at \textit{Florida Institute of Technology}}{2010}
+    \resumeSubheadingnew
+      {Dean's List at \textit{Florida Institute of Technology}}{2009 - 2013}
+  \resumeSubHeadingListEnd
+
+%
+%--------Publications------------
+\section{1st-Author Publications}
+ \resumeSubHeadingListStart
+   \item{
+    {\bf Calderon, Victor F.}, Berlind, Andreas A.
+    \textit{``\href{https://academic.oup.com/mnras/article/490/2/2367/5581509}{Prediction of Galaxy Cluster and Group masses in SDSS DR7 via a machine learning approach}``}, 2019, (\textit{submitted to \MNRAS})
+   }
+   \item{
+    {\bf Calderon, Victor F.}, Berlind, Andreas A., Sinha, Manodeep
+    \textit{``Probing the Stellar Content of Galaxy Groups with Value-Added Group Catalogues in the SDSS DR7``}, 2019, (\textit{submitted to \MNRAS})
+   }
+   \item{
+   \textbf{Calderon, Victor F.}, Berlind, Andreas A., Sinha, Manodeep
+   \href{http://dx.doi.org/10.1093/mnras/sty2000}{\it ``Small- and Large-Scale Galactic Conformity in SDSS DR7``}, 2018, \MNRAS, 480, 2, 2031 - 2045
+   }
+ \resumeSubHeadingListEnd
+ %
+
+ %--------Honours and Awards------------
+\section{Academic Service}
+  \resumeSubHeadingListStart
+    \resumeSubheadingnew
+      {Maintainer of \href{https://vanderbilt-astro-starting-grad-school.readthedocs.io/}{Vanderbilt Astro - Starting Grad School} Guide}{2018 - Present}
+    \resumeSubheadingnew
+      {Instructor of the \href{https://vandyastroml.github.io/2018_Fall_Vandy_Bridge_Computational_Bootcamp.html}{Vanderbilt-Fisk Computational Bootcamp}}{2018}
+    \resumeSubheadingnew
+      {Local Organizing Committee member of \href{http://scicoder.org/}{SciCoder} Nashville}{2017}
+    \resumeSubheadingnew
+      {Co-leader of the \href{http://vandyastroml.github.io/2017_Spring_Vandy_Computational_Workshop.html}
+      {Vanderbilt Computational Workshop}}{2017}
+    \resumeSubheadingnew
+      {\href{https://oge.mit.edu/undergraduate/msrp/}{MIT Summer Research Program} Review Committee}{2016 - 2021}
+    \resumeSubheadingnew
+      {Web Admin for the Vanderbilt \href{https://as.vanderbilt.edu/astronomy/}{Astronomy Group website}}{2015 - 2019}
+    \resumeSubheadingnew
+      {Host for Vanderbilt \href{https://as.vanderbilt.edu/astronomy/category/journal-club/}{Astronomy Journal Club}}{2015 - 2019}
+  \resumeSubHeadingListEnd
+
+%
+% -- Academic References --
+\section{Contributed Talks/Poster and Workshops}
+  \resumeSubHeadingListStart
+    \resumeSubheadingnew
+      {\href{http://www.iac.es/winterschool/2018/}{Big Data Analysis in Astronomy} and Machine Learning at \textit{La Laguna, Tenerife, Spain}}{2018}
+    \resumeSubheadingnew
+      {\href{https://www.dotastronomy.com/home-ten/}{.Astronomy X} Workshop in \textit{Baltimore, MD}}{2018}
+    \resumeSubheadingnew
+      {\href{https://sugar-rush2018.github.io/}{Sugar Rush 2018} in \textit{Shanghai, China}}{2018}
+    \resumeSubheadingnew
+      {\href{https://www.vumc.org/cqs/cqs-summer-institute}{Center for Quantitative Science - Machine Learning \& Statistics} workshop in \textit{Nashville, TN}}{2018}
+    \resumeSubheadingnew
+      {Vanderbilt Data Science Symposium at \textit{Nashville, TN}}{2018}
+    \resumeSubheadingnew
+      {\href{https://www.kitp.ucsb.edu/activities/galhalo-c17}{Quantifying and Understanding the Galaxy—Halo Connection} in \textit{Santa Barbara, CA}}{2017}
+    \resumeSubheadingnew
+      {\href{http://www.physics.utah.edu/snowpac/archive/2016/}{SnowPAC 2016: Galaxy-Halo Connection} in \textit{Salt Lake City, UT}}{2016}
+    \resumeSubheadingnew
+      {\href{https://aas.org/meetings/aas227}{AAS $227^{th}$} Winter Meeting in \textit{Kissimmee, FL}}{2016}
+    \resumeSubheadingnew
+      {Inclusive Astronomy 2015 in \textit{Nashville, TN}}{2015}
+    \resumeSubheadingnew
+      {\href{https://aas.org/meetings/aas225}{AAS $225^{th}$} Winter Meeting in \textit{Seattle, WA}}{2015}
+    \resumeSubheadingnew
+      {School on \href{http://www.physics.ntua.gr/corfu2014/de.html}{School on Dark Energy and Galaxy Redshift Surveys} in \textit{Corfu, Greece}}{2014}
+    \resumeSubheadingnew
+      {Summer School in \href{http://astrostatistics.psu.edu/su14/}{Statistics and Bayesian Modeling} for Astronomers in \textit{State College, PA}}{2014}
+    \resumeSubheadingnew
+      {\href{http://scicoder.org/}{SciCoder} Workshop at New York University in \textit{New York City, NY}}{2013}
+    \resumeSubheadingnew
+      {\href{https://www.ncrc.hcura.org/}{National Collegiate Research Conference} at Harvard University at \textit{Cambridge, MA}}{2013}
+  \resumeSubHeadingListEnd
+
+
+% %
+% % -- Academic References --
+% \section{References}
+%   \resumeSubHeadingListStart
+%     \item References available upon request
+%   \resumeSubHeadingListEnd
+
+
+
+
+
+
+%
+%% --- Last Updated --%%
+\vspace{0.5cm}
+\vfill{}
+\begin{center}
+{\scriptsize  Last updated: \today}
+% ---- FILL IN THE FULL URL TO YOUR CV HERE
+%\href{http://nitens.org/taraborelli/cvtex}{http://nitens.org/taraborelli/cvtex}}
+\end{center}
+
+%-------------------------------------------
+\end{document}

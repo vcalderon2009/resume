@@ -38,6 +38,14 @@ repos:
           ]
       - id: csquotes
       - id: ensure-labels-for-sections
+        exclude: >
+          (?x)^(
+            resume/Template/VFC_Original.tex
+            )
       - id: no-space-in-cite
       - id: tilde-cite
       - id: unique-labels
+        exclude: >
+          (?x)^(
+            resume/Template/VFC_Original.tex
+            )

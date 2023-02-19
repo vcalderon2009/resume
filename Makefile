@@ -41,6 +41,8 @@ show-params:
 	@ printf "\n-------- PYTHON ---------------\n"
 	@ echo "HAS_CONDA:                   $(HAS_CONDA)"
 	@ echo "HAS_PYENV:                   $(HAS_PYENV)"
+	@ echo ""
+	@ printf "\n--------------------------------\n"
 
 
 ###############################################################################
@@ -233,14 +235,14 @@ lint:
 DOCKER_DIRECTORY = $(PROJECT_DIR)/docker
 
 ## Function to build the Docker image
-build:
+build: show-params
 	@	cd $(DOCKER_DIRECTORY) && \
 		docker-compose \
 		--project-name $(PROJECT_NAME)_local_dev \
 		build
 
 ## Function to create PDF of the Latex File
-run:
+run: show-params
 	@	cd $(DOCKER_DIRECTORY) && \
 		docker compose \
 		--project-name $(PROJECT_NAME)_local_dev \

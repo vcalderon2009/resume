@@ -1,6 +1,12 @@
 name: Resume Builder
 run-name: ${{ github.actor }} - Resume
 on: [push]
+# on:
+#   push:
+#     branches:
+#       - main
+#   schedule:
+#     - cron: "0 5 * * *"
 jobs:
   Victor_Calderon:
     runs-on: "ubuntu-latest"
@@ -14,15 +20,20 @@ jobs:
           version: v2.3.3 # defaults to 'latest'
           legacy: true # will also install in PATH as `docker-compose`
       - name: Build Docker image
-        run: make build
+        run: |
+          echo "Name: ${NAME}"
+          make build PERSON_NAME="${NAME}"
       - name: Create Resume
-        run: make run
+        run: |
+          echo "Name: ${NAME}"
+          make run PERSON_NAME="${NAME}"
       - uses: actions/upload-artifact@v3
         with:
           name: Victor-Calderon-Resume
-          path: ./resume/${NAME}/${NAME}_Resume.pdf
+          path: ./resume/${NAME}/*.pdf
       - name: Rearrange files
         run: |
+          echo "Name: ${NAME}"
           rm .gitignore
           touch .nojekyll
           mkdir pdf

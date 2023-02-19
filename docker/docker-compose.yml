@@ -7,8 +7,16 @@ services:
       context: ../
       dockerfile: ./docker/resume.Dockerfile
     # -- Running local image
-    image: "resume-latex"
+    image: vcaln/docker-resume:latest
     container_name: "Resume-Latex"
     entrypoint: pdflatex
     volumes:
       - ../resume:/data
+  #
+  # Pushing to Docker-hub
+  public:
+    build:
+      context: ../
+      dockerfile: ./docker/resume.Dockerfile
+    # -- Running local image
+    image: vcaln/docker-resume:latest

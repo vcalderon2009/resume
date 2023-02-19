@@ -40,4 +40,4 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: Victor-Calderon-Resume
-          path: resume/**/Victor*.pdf
+          path: ./final_resumes/Victor*.pdf

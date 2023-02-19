@@ -11,33 +11,43 @@ jobs:
   Victor_Calderon:
     runs-on: "ubuntu-latest"
     env:
-      NAME: Victor_F_Calderon
+      PERSON_NAME: Victor_F_Calderon
+      DOCKER_COMPOSE_VERSION: v2.3.3
     steps:
+      # Checkous out the repository
       - uses: actions/checkout@v3
+      # Install the necessary version of 'docker-compose'
       - name: Docker Compose Setup
         uses: ndeloof/install-compose-action@v0.0.1
         with:
-          version: v2.3.3 # defaults to 'latest'
+          version: ${DOCKER_COMPOSE_VERSION} # defaults to 'latest'
           legacy: true # will also install in PATH as `docker-compose`
+      # Build Docker image for running Latex
       - name: Build Docker image
         run: |
-          echo "Name: ${NAME}"
-          make build PERSON_NAME="${NAME}"
+          echo "Name: ${PERSON_NAME}"
+          make build PERSON_NAME="${PERSON_NAME}"
+      # Create PDF with specified file
       - name: Create Resume
         run: |
-          echo "Name: ${NAME}"
-          make run PERSON_NAME="${NAME}"
+          echo "Name: ${PERSON_NAME}"
+          make run PERSON_NAME="${PERSON_NAME}"
+      # Upload artifact to Job
       - uses: actions/upload-artifact@v3
         with:
           name: Victor-Calderon-Resume
-          path: ./resume/${NAME}/*.pdf
+          path: ./resume/${PERSON_NAME}/*.pdf
+      # Copy resume into resulting output directory
       - name: Rearrange files
         run: |
-          echo "Name: ${NAME}"
+          echo "Name: ${PERSON_NAME}"
           rm .gitignore
           touch .nojekyll
+          export INPUT_FILE="./resume/${PERSON_NAME}/${PERSON_NAME}_Resume.pdf"
+          [ -f ${INPUT_FILE} ] && echo "${INPUT_FILE} exist." || echo "${INPUT_FILE} does not exist."
           mkdir pdf
-          cp ./resume/${NAME}/${NAME}_Resume.pdf pdf/
+          cp ${INPUT_FILE} pdf/
+      # Deploy PDF to Github pages
       - name: Deploy PDF
         uses: peaceiris/actions-gh-pages@v3
         with:

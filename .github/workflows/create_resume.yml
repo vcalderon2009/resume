@@ -38,11 +38,17 @@ jobs:
       - name: Create Resume
         run: |
           make run PERSON_NAME="${PERSON_NAME}"
+      # Check PDF files
+      - name: Find files
+        run: find . -name "*.pdf"
       # Upload artifact to Job
       - uses: actions/upload-artifact@v3
         with:
           name: "${{ env.ARTIFACT_NAME }}"
           path: ${{ env.INPUT_FILE_PATH }}
+      # Check PDF files
+      - name: Find files again
+        run: find . -name "*.pdf"
       # Copy resume into resulting output directory
       - name: Rearrange files
         run: |

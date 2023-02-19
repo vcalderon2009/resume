@@ -23,7 +23,7 @@ jobs:
       # Install Python
       - uses: actions/setup-python@v4
         with:
-          python-version: "3.7.9"
+          python-version: "3.7.13"
       # Install Python dependencies
       - name: Install dependencies
         run: |

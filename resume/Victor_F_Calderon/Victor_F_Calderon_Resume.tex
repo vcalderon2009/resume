@@ -154,6 +154,9 @@
 % --- Name of the person
 \newcommand{\myname}{Victor Calderon}
 
+% --- Email address
+\newcommand{\myemail}{\href{mailto:vcalderon.ds01@gmail.com}{vcalderon.ds01@gmail.com}}
+
 % --- Hyperlink-related
 % NOTE: For reference: https://www.overleaf.com/learn/latex/Using_colours_in_LaTeX
 \newcommand{\hyperlinkColor}{NavyBlue}
@@ -207,16 +210,16 @@
 \begin{document}
 
 % ------------------------------------HEADING----------------------------------
-\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
-  % -- Name and email address
-  \textbf{{\SizeTitleName \myname}} &
-  % \textbf{\href{\mywebsite}{\SizeTitleName \myname}} &
-  % -- Github
-  \faGithub: \href{\githuburl}{\@\githuburl} \\
-  % -- Personal website
-  {\large\href{\mywebsite}{\mywebsite}} &
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}l@{\extracolsep{\fill}}r}
+  % -- Name
+  \textbf{{\SizeTitleName \myname}} & &
   % -- LinkedIn
   \faLinkedin: \href{\linkedinwebsite}{\linkedinshort}\\
+  % -- Email address
+  {\Large\myemail} & &
+  % -- Personal website
+  {\large\href{\mywebsite}{\mywebsite}}\\
+  %
 \end{tabular*}
 
 %--------------------------------PROJECTS--------------------------------------
@@ -251,6 +254,13 @@
       SQL,
       \texttt{git}
     }
+    % --- Deep Learning
+    \skillItem{Deep Learning}{
+      PyTorch, TensorFlow, Keras,
+      Computer Vision for 2D and 3D data (classification, segmetation,
+      object detection and identification),
+      Neural Networks (CNNs, Point Clouds and meshes.)
+    }
     % --- Data Science and machine learning
     \skillItem{Machine Learning}{
       Regressions,
@@ -260,13 +270,6 @@
       model deployment strategies,
       data visualization
     }
-    % --- Deep Learning
-    \skillItem{Deep Learning}{
-      PyTorch, TensorFlow, Keras,
-      Computer Vision for 2D and 3D data (classification, segmetation,
-      object detection and identification),
-      Neural Networks (CNNs)
-    }
     % --- Technologies
     \skillItem{Technologies}{
       Amazon Web Services (AWS), AWS SageMaker, Docker, Kubernetes,
@@ -274,7 +277,7 @@
       Flask, FastAPI,
       Kafka,
       CICD (Gitlab CICD, TravisCI),
-      MLFLow
+      MLFLow, Airflow, \texttt{Terraform}
     }
     % --- Technical Writing
     \skillItem{Technical Writing}{
@@ -307,18 +310,18 @@
       \resumeItemListStart
       %
       \workExperienceBullet{
+        Developed and maintained a suite of automatic equipment identification
+        models using supervised deep learning and 6D point clouds and meshes of
+        towers and mounted equipment. Reduced the processing time by 20\% over
+        manual processing when identifying mounted equipment on the digital
+        version of towers.
+      }
+      %
+      \workExperienceBullet{
         Trained, validated, and deployed image segmentation deep learning
         models for automatic detection of enclosures and occupied spaces for
         areas around towers with 90\% accuracy and a 50\% time savings over
         manual identification.
-      }
-      %
-      \workExperienceBullet{
-        Developed and maintained a suite of automatic equipment identification
-        models using supervised deep learning and 6D point clouds of towers
-        and mounted equipment. Reduced the processing time by 20\% over manual
-        processing when identifying mounted equipment on the digital version
-        of towers.
       }
       %
       \workExperienceBullet{
@@ -415,7 +418,7 @@
   % ---- Grad School
     \resumeSubheading
     {Vanderbilt University}{Nashville, TN (USA)}
-    {Ph.D. in Physics with focus in Astrophysics;
+    {Ph.D. in Physics with focus in Computational Astrophysics;
     Adviser: \aberlind}{Aug 2019}
     % {Understanding the Galaxy-Halo connection through galaxy group catalogues}
     % {\href{https://www.overleaf.com/read/ngzgrthrnrcj}{\faLink}}

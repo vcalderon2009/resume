@@ -19,7 +19,7 @@ jobs:
       # Add variable to environment variables
       - name: Add variables
         run: |
-          echo "INPUT_FILE_PATH='resume/${PERSON_NAME}/${PERSON_NAME}_Resume.pdf'" >> $GITHUB_ENV
+          echo "INPUT_FILE_PATH='${{ github.workspace }}/resume/${PERSON_NAME}/${PERSON_NAME}_Resume.pdf'" >> $GITHUB_ENV
           echo "ARTIFACT_NAME='${PERSON_NAME}_Resume'" >> $GITHUB_ENV
           cat $GITHUB_ENV
       # Install the necessary version of 'docker-compose'

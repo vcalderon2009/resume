@@ -16,11 +16,6 @@ jobs:
     steps:
       # Checkous out the repository
       - uses: actions/checkout@v3
-      # Install packages
-      - name: Install packages
-        run: |
-          apt-get update -y
-          apt-get install -y tree
       # Add variable to environment variables
       - name: Add variables
         run: |

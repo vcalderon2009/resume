@@ -36,6 +36,6 @@ jobs:
       - name: Deploy PDF
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./pdf
           force_orphan: true

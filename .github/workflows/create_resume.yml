@@ -2,7 +2,6 @@
 env:
   PERSON_NAME: Victor_F_Calderon
   DOCKER_COMPOSE_VERSION: v2.3.3
-  PYTHON_VERSION: 3.7.9
 
 name: Resume Builder
 run-name: ${{ github.actor }} - Resume
@@ -24,7 +23,7 @@ jobs:
       # Install Python
       - uses: actions/setup-python@v4
         with:
-          python-version: "${PYTHON_VERSION}"
+          python-version: "3.7.9"
       # Install Python dependencies
       - name: Install dependencies
         run: |

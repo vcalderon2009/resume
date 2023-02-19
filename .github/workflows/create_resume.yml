@@ -8,31 +8,25 @@ jobs:
       NAME: Victor_F_Calderon
     steps:
       - uses: actions/checkout@v3
-      # - name: Docker Compose Setup
-      #   uses: ndeloof/install-compose-action@v0.0.1
-      #   with:
-      #     version: v2.3.3 # defaults to 'latest'
-      #     legacy: true # will also install in PATH as `docker-compose`
-      # - name: Build Docker image
-      #   run: make build
-      # - name: Create Resume
-      #   run: make run
-      # - uses: actions/upload-artifact@v3
-      #   with:
-      #     name: Victor-Calderon-Resume
-      #     path: ./resume/${NAME}/${NAME}_Resume.pdf
-      # - name: Rearrange files
-      #   run: |
-      #     rm .gitignore
-      #     touch .nojekyll
-      #     mkdir pdf
-      #     mv ./resume/${NAME}/${NAME}_Resume.pdf pdf/
+      - name: Docker Compose Setup
+        uses: ndeloof/install-compose-action@v0.0.1
+        with:
+          version: v2.3.3 # defaults to 'latest'
+          legacy: true # will also install in PATH as `docker-compose`
+      - name: Build Docker image
+        run: make build
+      - name: Create Resume
+        run: make run
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Victor-Calderon-Resume
+          path: ./resume/${NAME}/${NAME}_Resume.pdf
       - name: Rearrange files
         run: |
           rm .gitignore
           touch .nojekyll
           mkdir pdf
-          touch pdf/test.pdf
+          mv ./resume/${NAME}/${NAME}_Resume.pdf pdf/
       - name: Deploy PDF
         uses: peaceiris/actions-gh-pages@v3
         with:

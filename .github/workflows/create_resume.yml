@@ -16,6 +16,17 @@ jobs:
     steps:
       # Checkous out the repository
       - uses: actions/checkout@v3
+      # Install packages
+      - name: Install packages
+        run: |
+          apt-get update -y
+          apt-get install -y tree
+      # Add variable to environment variables
+      - name: Add variables
+        run: |
+          echo "INPUT_FILE_PATH='resume/${PERSON_NAME}/${PERSON_NAME}_Resume.pdf'" >> $GITHUB_ENV
+          echo "ARTIFACT_NAME='${PERSON_NAME}_Resume'" >> $GITHUB_ENV
+          cat $GITHUB_ENV
       # Install the necessary version of 'docker-compose'
       - name: Docker Compose Setup
         uses: ndeloof/install-compose-action@v0.0.1
@@ -26,27 +37,26 @@ jobs:
       - name: Build Docker image
         run: |
           echo "Name: ${PERSON_NAME}"
+          echo "Docker Compose Version: $(docker compose version)"
           make build PERSON_NAME="${PERSON_NAME}"
       # Create PDF with specified file
       - name: Create Resume
         run: |
-          echo "Name: ${PERSON_NAME}"
           make run PERSON_NAME="${PERSON_NAME}"
       # Upload artifact to Job
       - uses: actions/upload-artifact@v3
         with:
-          name: Victor-Calderon-Resume
-          path: ./resume/${PERSON_NAME}/*.pdf
+          name: "${{ env.ARTIFACT_NAME }}"
+          path: ${{ env.INPUT_FILE_PATH }}
       # Copy resume into resulting output directory
       - name: Rearrange files
         run: |
           echo "Name: ${PERSON_NAME}"
           rm .gitignore
           touch .nojekyll
-          export INPUT_FILE="./resume/${PERSON_NAME}/${PERSON_NAME}_Resume.pdf"
-          [ -f ${INPUT_FILE} ] && echo "${INPUT_FILE} exist." || echo "${INPUT_FILE} does not exist."
-          mkdir pdf
-          cp ${INPUT_FILE} pdf/
+          [ -f ${{ env.INPUT_FILE_PATH }} ] && echo "${{ env.INPUT_FILE_PATH }} exist." || echo "${{ env.INPUT_FILE_PATH }} does not exist."
+          mkdir -p pdf
+          cp ${{ env.INPUT_FILE_PATH }} pdf/
       # Deploy PDF to Github pages
       - name: Deploy PDF
         uses: peaceiris/actions-gh-pages@v3

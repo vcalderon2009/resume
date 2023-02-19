@@ -1,3 +1,8 @@
+# Main environment
+env:
+  PERSON_NAME: Victor_F_Calderon
+  DOCKER_COMPOSE_VERSION: v2.3.3
+
 name: Resume Builder
 run-name: ${{ github.actor }} - Resume
 on: [push]
@@ -8,11 +13,10 @@ on: [push]
 #   schedule:
 #     - cron: "0 5 * * *"
 jobs:
-  Victor_Calderon:
+  #
+  # ---- Build Latex PDF and upload to repo's Github Pages
+  build-latex-locally:
     runs-on: "ubuntu-latest"
-    env:
-      PERSON_NAME: Victor_F_Calderon
-      DOCKER_COMPOSE_VERSION: v2.3.3
     steps:
       # Checkous out the repository
       - uses: actions/checkout@v3
@@ -38,12 +42,6 @@ jobs:
       - name: Create Resume
         run: |
           make run PERSON_NAME="${PERSON_NAME}"
-      # Check PDF files
-      - name: Find files
-        run: find . -name "*.pdf"
-      # Check PDF files
-      - name: Find files again
-        run: find . -name "*.pdf"
       # Copy resume into resulting output directory
       - name: Rearrange files
         run: |
@@ -58,9 +56,6 @@ jobs:
         with:
           name: "${{ env.ARTIFACT_NAME }}"
           path: pdf/*.pdf
-      # Check PDF files
-      - name: Find files again 2
-        run: find . -name "*.pdf"
       # Deploy PDF to Github pages
       - name: Deploy PDF
         uses: peaceiris/actions-gh-pages@v3

@@ -26,7 +26,7 @@ jobs:
           rm .gitignore
           touch .nojekyll
           mkdir pdf
-          mv ./resume/${NAME}/${NAME}_Resume.pdf pdf/
+          cp ./resume/${NAME}/${NAME}_Resume.pdf pdf/
       - name: Deploy PDF
         uses: peaceiris/actions-gh-pages@v3
         with:

@@ -18,6 +18,8 @@ SED_BACKUP_EXTENSION = .original
 
 PERSON_NAME=Victor_F_Calderon
 
+SERVICE_NAME=resume
+
 ###############################################################################
 #  VARIABLES FOR COMMANDS                                                     #
 ###############################################################################
@@ -30,6 +32,7 @@ show-params:
 	@ echo "RESUME_DIR:                  $(RESUME_DIR)"
 	@ echo "DOCKER_DIRECTORY:            $(DOCKER_DIRECTORY)"
 	@ echo "PERSON_NAME:                 $(PERSON_NAME)"
+	@ echo "SERVICE_NAME:                $(SERVICE_NAME)"
 	@ printf "\n-------- ENVIRONMENT ---------------\n"
 	@ echo "ENVIRONMENT_NAME:            $(ENVIRONMENT_NAME)"
 	@ echo "PYTHON_INTERPRETER:          $(PYTHON_INTERPRETER)"
@@ -52,7 +55,7 @@ show-params:
 # -------------------- Functions for cleaning repository ----------------------
 
 ## Removes artifacts from the build stage, and other common Python artifacts.
-clean: clean-build clean-pyc clean-test clean-latex
+clean: clean-build clean-pyc clean-test clean-latex docker-prune
 
 ## Removes Python file artifacts
 clean-pyc:
@@ -234,12 +237,35 @@ lint:
 
 DOCKER_DIRECTORY = $(PROJECT_DIR)/docker
 
+## Prune Docker
+docker-prune:
+	@	docker system prune -f
+
+## Login to Docker
+docker-login:
+	@	docker login \
+		-u $(DOCKER_USERNAME) \
+		-p $(DOCKER_TOKEN)
+
+## Logout from Docker
+docker-logout:
+	@	docker logout || echo ""
+
 ## Function to build the Docker image
 build: show-params
 	@	cd $(DOCKER_DIRECTORY) && \
 		docker-compose \
 		--project-name $(PROJECT_NAME)_local_dev \
-		build
+		build \
+		$(SERVICE_NAME)
+
+## Push Docker image to repoisitory
+push: docker-login build
+	@	cd $(DOCKER_DIRECTORY) && \
+		docker-compose \
+		--project-name $(PROJECT_NAME)_local_dev \
+		push \
+		$(SERVICE_NAME)
 
 ## Function to create PDF of the Latex File
 run: show-params
@@ -247,7 +273,7 @@ run: show-params
 		docker compose \
 		--project-name $(PROJECT_NAME)_local_dev \
 		run \
-		resume \
+		$(SERVICE_NAME) \
 		--output-directory "/data/$(PERSON_NAME)" \
 		"$(PERSON_NAME)/$(PERSON_NAME)_Resume.tex"
 	@	$(MAKE) clean

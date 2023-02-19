@@ -27,8 +27,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: Docker Compose Original Version
         run: docker compose version
-      - name: Install Compose
-        uses: ndeloof/install-docker-compose@0.0.1
+      - name: Docker Compose Setup
+        uses: ndeloof/install-compose-action@v0.0.1
         with:
           version: v2.3.3 # defaults to 'latest'
           legacy: true # will also install in PATH as `docker-compose`

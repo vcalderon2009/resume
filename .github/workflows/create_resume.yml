@@ -29,8 +29,15 @@ jobs:
         run: make build
       - name: Check running Docker
         run: docker ps -a
-      - name: Check logs
-        run: docker logs Resume-Latex
+      - name: Create Resume
+        run: |
+          make run
+          mkdir -p ./final_resumes
+          cp ././resume/Victor_F_Calderon/Victor_F_Calderon_Resume.pdf ./final_resumes
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Victor-Calderon-Resume
+          path: resume/**/Victor*.pdf

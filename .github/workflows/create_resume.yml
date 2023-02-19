@@ -17,23 +17,19 @@ jobs:
         run: make build
       - name: Create Resume
         run: make run
-
-      # - name: Update file in repository
-      #   run: |
-      #     mkdir -p ./final_resumes/${NAME}
-      #     cp ./resume/${NAME}/${NAME}.pdf ./final_resumes/${NAME}
-      #     git add ./final_resumes/${NAME}/${NAME}.pdf
-      # - name: setup git config
-      #   run: |
-      #     git config user.name "GitHub Actions Bot"
-      #     git config user.email "<>"
-      # - name: commit
-      #   run: |
-      #     # Stage the file, commit and push
-      #     git add time.txt
-      #     git commit -m "new date commit"
-      #     git push origin master
       - uses: actions/upload-artifact@v3
         with:
           name: Victor-Calderon-Resume
           path: ./resume/${NAME}/${NAME}.pdf
+      - name: Rearrange files
+        run: |
+          rm .gitignore
+          touch .nojekyll
+          mkdir pdf
+          mv ./resume/${NAME}/${NAME}.pdf pdf/
+      - name: Deploy PDF
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          publish_dir: ./pdf
+          force_orphan: true

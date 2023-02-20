@@ -50,16 +50,12 @@ jobs:
         with:
           version: ${DOCKER_COMPOSE_VERSION} # defaults to 'latest'
           legacy: true # will also install in PATH as `docker-compose`
-      # Build Docker image for running Latex
-      # - name: Build Docker image
-      #   run: |
-      #     echo "Name: ${PERSON_NAME}"
-      #     echo "Docker Compose Version: $(docker compose version)"
-      #     make build PERSON_NAME="${PERSON_NAME}"
       # Create PDF with specified file
       - name: Create Resume
         run: |
-          make run PERSON_NAME="${PERSON_NAME}"
+          make \
+          PERSON_NAME="${PERSON_NAME}" \
+          run
       # Copy resume into resulting output directory
       - name: Rearrange files
         run: |

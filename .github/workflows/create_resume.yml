@@ -5,13 +5,12 @@ env:
 
 name: Resume Builder
 run-name: ${{ github.actor }} - Resume
-on: [push]
-# on:
-#   push:
-#     branches:
-#       - main
-#   schedule:
-#     - cron: "0 5 * * *"
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 5 * * *"
 jobs:
   #
   # --- Linting code

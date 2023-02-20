@@ -1,0 +1,51 @@
+#
+# Author: Victor Calderon
+#
+# Created       : 2022-11-17
+# Last Modified : 2022-11-17
+#
+# Description
+#    This file summarizes the set of checks that pre-commit will perform
+#    prior to any commit.
+
+default_stages: [commit, manual]
+
+# Repositories to use
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.4.0
+    hooks:
+      - id: trailing-whitespace
+        files: ".*\\.(?:tex|py)$"
+      - id: end-of-file-fixer
+      - id: check-yaml # Checks yaml files for parseable syntax.
+      - id: check-json # Checks json files for parseable syntax.
+      - id: check-added-large-files
+      - id: check-toml
+      - id: check-merge-conflict
+  - repo: https://github.com/jonasbb/pre-commit-latex-hooks
+    rev: v1.3.0
+    hooks:
+      - id: american-eg-ie
+      - id: cleveref-capitalization
+      - id: consistent-spelling
+        args:
+          [
+            "--emph=et al.",
+            "--emph=a priori",
+            "--emph=a posteriori",
+            '--regex=naive=\bna(i|\\"i)ve',
+          ]
+      - id: csquotes
+      - id: ensure-labels-for-sections
+        exclude: >
+          (?x)^(
+            resume/Template/VFC_Original.tex
+            )
+      - id: no-space-in-cite
+      - id: tilde-cite
+      - id: unique-labels
+        exclude: >
+          (?x)^(
+            resume/Template/VFC_Original.tex
+            )

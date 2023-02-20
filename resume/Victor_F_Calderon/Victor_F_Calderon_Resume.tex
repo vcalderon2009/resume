@@ -1,0 +1,442 @@
+%-------------------------
+% Resume in Latex
+% Author : Sourabh Bajaj
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{fontawesome}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage[svgnames]{xcolor}
+\input{glyphtounicode}
+
+\usepackage{array}
+
+\usepackage{pifont}
+
+
+
+
+\hypersetup{
+    colorlinks=true,
+%     citecolor=blue,
+    % linkcolor=blue,
+%     filecolor=magenta,
+    % urlcolor=red,
+    % urlcolor=blue,
+    urlcolor=RoyalBlue,
+}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}
+  \scshape
+  \raggedright
+  % \large
+  \SizeSections
+  \bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item
+    \small{
+    \textbf{#1}{: #2 \vspace{-2pt}}
+  }
+}
+
+% Just in case someone needs a heading that does not need to be in a list
+\newcommand{\resumeHeading}[4]{
+    \begin{tabular*}{0.99\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      {\small#3} & \textit{\small #4} \\
+      % \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand{\labelitemii}{$\circ$}
+
+\newcommand{\resumeSubHeadingListStart}{
+  \begin{itemize}[leftmargin=*]
+    \itemsep
+    \itemseparation
+}
+\newcommand{\resumeSubHeadingListStartDash}{
+  \begin{itemize}[
+    labelwidth={1em},
+    font=\bfseries,
+    align=left,
+    leftmargin=*,
+    label={--}
+  ]\itemsep\itemseparation }
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-1pt}}
+
+% ------------------------- Modified headers ----------------------------------
+
+\newcommand{\resumeSubheadingsix}[6]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+      \ \ \ \ \small{Title: \textit{#5} #6} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+
+% --- Modified list for skills
+\newcommand{\startSkills}{\begin{tabular}
+  {
+  p{\skillColumnWidthOne\textwidth}
+  p{\skillColumnWidthTwo\textwidth}
+  p{\skillColumnWidthThree\textwidth}
+  }
+}
+\newcommand{\finishSkill}{\end{tabular}}
+\newcommand{\skillItem}[2]{
+  {- \textbf{#1}} & : & {#2}\\ [\skillPadding]
+}
+
+
+% ---------------------------- SHORTCUTS --------------------------------------
+
+% --- Name of the person
+\newcommand{\myname}{Victor Calderon}
+
+% --- Email address
+\newcommand{\myemail}{\href{mailto:vcalderon.ds01@gmail.com}{vcalderon.ds01@gmail.com}}
+
+% --- Hyperlink-related
+% NOTE: For reference: https://www.overleaf.com/learn/latex/Using_colours_in_LaTeX
+\newcommand{\hyperlinkColor}{NavyBlue}
+
+% --- Miscellaneous
+\newcommand{\MNRAS}{Monthly Notices of the Royal Astronomical Society}
+\newcommand{\XGBoost}{\texttt{XGBoost}}
+\newcommand{\XGBoosts}{\texttt{XGBoost} }
+\newcommand{\aberlind}{\href{https://www.linkedin.com/in/aberlind/}{Andreas Berlind}}
+
+% --- Contact
+\newcommand{\linkedinwebsite}{https://www.linkedin.com/in/vcalderon}
+\newcommand{\linkedinshort}{linkedin.com/in/vcalderon}
+\newcommand{\githubusername}{vcalderon2009}
+\newcommand{\githuburl}{https://www.github.com/vcalderon2009}
+\newcommand{\mywebsite}{http://vcalderon.me}
+\newcommand{\itemseparation}{0em}
+
+% -- Related to the Skill-section
+\newcommand{\skillColumnWidthOne}{0.22}
+\newcommand{\skillColumnWidthTwo}{0.01}
+\newcommand{\skillColumnWidthThree}{0.75}
+\newcommand{\skillPadding}{0pt}
+
+% -- Size of sections, titles, etc.
+\newcommand{\SizeTitleName}{\Huge}
+\newcommand{\SizeSections}{\LARGE}
+
+% -- Work Experience bullet points
+\newcommand{\workExperienceBulletSpacing}{-3pt}
+
+\newcommand{\workExperienceBullet}[1]{
+  \item{
+    {#1 \vspace{\workExperienceBulletSpacing}}
+  }
+}
+
+\newcommand{\workResumeSubheading}[3]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      {\textbf{#1}} - {\textbf{\textit{#2}}} & \textbf{#3} \\
+      % {\textbf{\small#3}} & \textit{\small #4} \\
+      % \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+%------------------------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CV STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% ------------------------------------HEADING----------------------------------
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}l@{\extracolsep{\fill}}r}
+  % -- Name
+  \textbf{{\SizeTitleName \myname}} & &
+  % -- LinkedIn
+  \faLinkedin: \href{\linkedinwebsite}{\linkedinshort}\\
+  % -- Email address
+  {\Large\myemail} & &
+  % -- Personal website
+  {\large\href{\mywebsite}{\mywebsite}}\\
+  %
+\end{tabular*}
+
+%--------------------------------PROJECTS--------------------------------------
+% \section{Projects}
+%   \resumeSubHeadingListStart
+%     \resumeSubItem{QuantSoftware Toolkit}
+%       {Open source python library for financial data analysis and machine learning for finance.}
+%     \resumeSubItem{Github Visualization}
+%       {Data Visualization of Git Log data using D3 to analyze project trends over time.}
+%     \resumeSubItem{Recommendation System}
+%       {Music and Movie recommender systems using collaborative filtering on public datasets.}
+%     \resumeSubItem{Mac Setup}
+%       {Book that gives step by step instructions on setting up developer environment on Mac OS.}
+%   \resumeSubHeadingListEnd
+
+% --------------------------- TECHNICAL SKILLS---------------------------------
+
+\section{Technical Skills}
+  \label{sec:technical-skills}
+  % \startSkills
+  %   \skillItem{This is a test}{Another item}
+  % \finishSkill
+
+
+  \startSkills
+    % --- Programming skills
+    \skillItem{Programming}{
+      Python (pandas, sklearn, scraping, visualization),
+      C,
+      Cython,
+      Bash,
+      SQL,
+      \texttt{git}
+    }
+    % --- Deep Learning
+    \skillItem{Deep Learning}{
+      PyTorch, TensorFlow, Keras,
+      Computer Vision for 2D and 3D data (classification, segmetation,
+      object detection and identification),
+      Neural Networks (CNNs, Point Clouds and meshes.)
+    }
+    % --- Data Science and machine learning
+    \skillItem{Machine Learning}{
+      Regressions,
+      Decision Trees, Random Forests,
+      Clustering,
+      Hypothesis testing,
+      model deployment strategies,
+      data visualization
+    }
+    % --- Technologies
+    \skillItem{Technologies}{
+      Amazon Web Services (AWS), AWS SageMaker, Docker, Kubernetes,
+      \texttt{serverless},
+      Flask, FastAPI,
+      Kafka,
+      CICD (Gitlab CICD, TravisCI),
+      MLFLow, Airflow, \texttt{Terraform}
+    }
+    % --- Technical Writing
+    \skillItem{Technical Writing}{
+      HTML/CSS, Markdown, reStructuredText, \LaTeX
+    }
+  % --- End of skills
+  \finishSkill
+
+% ------------------------------EXPERIENCE-------------------------------------
+
+% --- EXAMPLE
+% \resumeSubheading
+% {COMPANY}{LOCATION, STATE}
+% {JOB TITLE}{STARTMONTH STARTYEAR - Present}
+% \resumeItemListStart
+%   \resumeItem{ITEM 1}
+%     {Description}
+% \resumeItemListEnd
+
+\section{Work Experience}
+  \label{sec:work-experience}
+  \resumeSubHeadingListStart
+
+  % -------------- 5X5
+  \workResumeSubheading
+    {5x5 Technologies, Inc.}
+    {Senior Machine Learning Engineer}
+    {Jan 2021 - Present}
+      % --- Description fo the work
+      \resumeItemListStart
+      %
+      \workExperienceBullet{
+        Developed and maintained a suite of automatic equipment identification
+        models using supervised deep learning and 6D point clouds and meshes of
+        towers and mounted equipment. Reduced the processing time by 20\% over
+        manual processing when identifying mounted equipment on the digital
+        version of towers.
+      }
+      %
+      \workExperienceBullet{
+        Trained, validated, and deployed image segmentation deep learning
+        models for automatic detection of enclosures and occupied spaces for
+        areas around towers with 90\% accuracy and a 50\% time savings over
+        manual identification.
+      }
+      %
+      \workExperienceBullet{
+        Implemented MLOps pipelines for various models, including automatic
+        model training, validation, versioning, API access, and CICD deployment.
+      }
+      %
+      \workExperienceBullet{
+        Architechted and implemented ETL pipelines for data generation and
+        ingestion used by ML projects.
+      }
+      %
+      \workExperienceBullet{
+        Managed and mentored 3 intern students.
+      }
+      %
+      \resumeItemListEnd
+  % -------------- HCA Healthcare
+  \workResumeSubheading
+      {HCA Healthcare}
+      {Data Scientist}
+      {Sep 2019 - Jan 2021}
+      % --- Description fo the work
+      \resumeItemListStart
+      %
+        \workExperienceBullet{
+          Developed internal tooling and packages to streamline various projects
+          within the Data Science team.
+        }
+        %
+        \workExperienceBullet{
+          Trained and validated various tree-based models to predict the
+          hourly- and daily ER census at any given time and at any of the
+          200 hospitals in the HCA hospital network. Also responsible for the
+          training, validation, deployment, and monitoring of the models.
+        }
+        %
+        \workExperienceBullet{
+          Led the initial planning and development of an early detection algorithm
+          of Sepsis and organ failure using time-dependent features of
+          the patients.
+        }
+      %
+      \resumeItemListEnd
+  % -------------- VANDERBILT
+  \workResumeSubheading
+      {Vanderbilt University}
+      {Research Scientist}
+      {Jun 2013 - Aug 2019}
+      % --- Description fo the work
+      \resumeItemListStart
+      % -- Machine learning
+        \workExperienceBullet{
+          Trained tree-based models on large synthetic galaxy catalogues
+          to infer masses of galaxy systems.
+        }
+        %
+        \workExperienceBullet{
+          Improved current mass estimates of galaxy systems by up to factors
+          of 10x improvement over traditional methods by applying machine
+          learning techniques to the analysis of galaxy systems.
+        }
+        %
+        \workExperienceBullet{
+          Developed tools and community packages for analyzing various types
+          of galaxy datasets.
+        }
+        %
+        \workExperienceBullet{
+          Ran N-body simulations of the Universe to study the formation and
+          clustering of galaxies, and made statistical inferences about how
+          galaxies form and evolve over time in simulations.
+        }
+      \resumeItemListEnd
+
+% --------Multiple Positions Heading------------
+%    \resumeSubSubheading
+%     {Software Engineer I}{Oct 2014 - Sep 2016}
+%     \resumeItemListStart
+%        \resumeItem{Apache Beam}
+        %  {Apache Beam is a unified model for defining both batch and
+        %  streaming data-parallel processing pipelines}
+%     \resumeItemListEnd
+%    \resumeSubHeadingListEnd
+%-------------------------------------------
+
+  \resumeSubHeadingListEnd
+
+% ----------------------------------EDUCATION----------------------------------
+
+\section{Education}
+  \label{sec:education}
+  \resumeSubHeadingListStart
+  % ---- Grad School
+    \resumeSubheading
+    {Vanderbilt University}{Nashville, TN (USA)}
+    {Ph.D. in Physics with focus in Computational Astrophysics;
+    Adviser: \aberlind}{Aug 2019}
+    % {Understanding the Galaxy-Halo connection through galaxy group catalogues}
+    % {\href{https://www.overleaf.com/read/ngzgrthrnrcj}{\faLink}}
+  % ----- College
+    \resumeSubheading
+      {Florida Institute of Technology}{Melbourne, FL (USA)}
+      {B.Sc. degrees in Astrophysics, Physics and Mathematics;
+      Magna Cum Laude}{May 2013}
+  \resumeSubHeadingListEnd
+
+%
+% ------------------------------ Last Updated ---------------------------------
+
+\vspace{0.5cm}
+\vfill{}
+\begin{center}
+{\scriptsize  Last updated: \today}
+\end{center}
+
+% -----------------------------------------------------------------------------
+\end{document}
